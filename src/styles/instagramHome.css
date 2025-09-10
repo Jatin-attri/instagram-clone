@@ -1,0 +1,16 @@
+.instagram-home {
+  background-color: #fafafa;
+  padding-bottom: 60px; /* for bottom nav */
+}
+
+.instagram-logo {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 1.8rem;
+  color: #262626;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: auto;
+  width: 100%;
+}

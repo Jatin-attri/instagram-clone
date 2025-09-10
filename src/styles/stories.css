@@ -1,0 +1,48 @@
+.stories-bar {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.story-item {
+  text-align: center;
+  margin-right: 15px;
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.story-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 5px;
+  position: relative;
+  border: 2px solid #c13584; /* Instagram-style ring */
+  transition: transform 0.2s ease;
+}
+
+.story-img:hover {
+  transform: scale(1.05);
+}
+
+.your-story {
+  border: 2px solid #ccc;
+}
+
+.live-story::after {
+  content: "LIVE";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}

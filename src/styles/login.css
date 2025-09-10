@@ -1,0 +1,54 @@
+.instagram-login {
+  background-color: #fafafa;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 360px;
+  width: 100%;
+}
+
+.instagram-login .instagram-logo {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 2.5rem;
+  color: #262626;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.instagram-login .form-control {
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+}
+
+.instagram-login .btn-primary {
+  background-color: #0095f6;
+  border: none;
+  font-weight: 600;
+}
+
+.instagram-login .btn-primary:hover {
+  background-color: #007acc;
+}
+
+.instagram-login .btn-outline-primary {
+  border-color: #385185;
+  color: #385185;
+  font-weight: 500;
+}
+
+.instagram-login .btn-outline-primary:hover {
+  background-color: #385185;
+  color: #fff;
+}
+
+.instagram-login .text-muted {
+  font-size: 0.85rem;
+}
+
+.instagram-login a.text-primary:hover {
+  text-decoration: underline;
+}

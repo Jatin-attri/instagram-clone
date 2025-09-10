@@ -1,0 +1,8 @@
+/* index.css */
+.app-container {
+  max-width: 900px;  /* Prevents UI from being too wide */
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+  border: 1px solid #ddd;
+}
