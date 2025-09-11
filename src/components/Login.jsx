@@ -1,5 +1,6 @@
 import { FaFacebookSquare } from "react-icons/fa";
 import "../styles/login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     return (
@@ -38,7 +39,7 @@ export default function Login() {
                 {/* Footer */}
                 <div className="text-center mt-3">
                     <small>
-                        Don’t have an account? <a href="#" className="text-primary">Sign up</a>
+                        Don’t have an account? <Link to="/">Sign Up</Link> 
                     </small>
                 </div>
 

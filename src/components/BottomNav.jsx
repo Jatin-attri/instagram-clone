@@ -1,12 +1,35 @@
-function BottomNav() {
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {
+  FaHome,
+  FaSearch,
+  FaPlusSquare,
+  FaHeart,
+  FaUserCircle,
+} from "react-icons/fa";
+import "../styles/BottomNav.css";
+
+export default function BottomNav() {
   return (
-    <nav className="navbar fixed-bottom bg-light d-flex justify-content-around py-2 border-top">
-      <i className="bi bi-house-fill"></i>
-      <i className="bi bi-search"></i>
-      <i className="bi bi-plus-square"></i>
-      <i className="bi bi-heart"></i>
-      <i className="bi bi-person"></i>
-    </nav>
+    <div className="bottom-nav-wrapper">
+      <div className="bottom-nav-inner">
+        <NavLink to="/" className="nav-btn">
+          <FaHome />
+        </NavLink>
+        <NavLink to="/search" className="nav-btn">
+          <FaSearch />
+        </NavLink>
+        <NavLink to="/create" className="nav-btn">
+          <FaPlusSquare />
+        </NavLink>
+        <NavLink to="/Notifications" className="nav-btn">
+          <Link to="/Notifications"><FaHeart /></Link>
+        </NavLink>
+        <NavLink to="/profile" className="nav-btn">
+          <FaUserCircle />
+        </NavLink>
+      </div>
+    </div>
   );
 }
-export default BottomNav;

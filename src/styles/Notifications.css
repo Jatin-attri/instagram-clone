@@ -1,0 +1,60 @@
+.notifications-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.section-title {
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.notification-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.notification-text small {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.reply-link {
+  font-size: 0.8rem;
+  color: #3897f0;
+  text-decoration: none;
+}
+
+.thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.btn-primary {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  margin-left: 10px;
+}

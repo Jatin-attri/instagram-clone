@@ -1,0 +1,46 @@
+.post-grid-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.post-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.nav-icon {
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-icon.active {
+  color: black;
+}
+
+.nav-icon.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: black;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.post-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}

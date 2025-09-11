@@ -1,0 +1,55 @@
+.register-container {
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+.register-card {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #dbdbdb;
+  max-width: 400px;
+  width: 100%;
+}
+
+.register-logo {
+  font-family: 'Billabong', cursive;
+  font-size: 2.8rem;
+  color: #262626;
+}
+
+.form-control {
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #dbdbdb;
+  background-color: #fefefe;
+}
+
+.form-control:focus {
+  border-color: #a8a8a8;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: #3897f0;
+  border-color: #3897f0;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #318ce7;
+  border-color: #318ce7;
+}
+
+.text-muted {
+  color: #8e8e8e !important;
+}
+
+.text-primary {
+  color: #3897f0 !important;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}
+

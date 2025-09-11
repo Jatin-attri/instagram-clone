@@ -5,6 +5,10 @@ import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
 import Stories from "./components/Stories";
 import ProfileHeader from "./components/ProfileHeader";
+import HighlightIcons from "./components/HighlightIcons";
+import ProfilePage from "./components/ProfilePage";
+import Register from "./components/Register";
+import Notifications from "./components/Notifications";
 // import Profile from "./pages/Profile";
 // import Explore from "./pages/Explore";
 
@@ -13,11 +17,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         
-        <Route path="/" element={<Login/>}/>
-        <Route path="/home" element={<ProfileHeader/>}/>
-        {/* <Route path="/Homepage" element={<Navbar />} /> */}
-        {/* <Route path="/explore" element={<Explore />} />
-        <Route path="/profile/:id" element={<Profile />} /> */}
+        <Route path="/" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+       <Route path="/Notifications" element={<Notifications/>}/>
+        <Route path="/profile" element={<ProfilePage/>}/>
+        
       </Routes>
     </BrowserRouter>
   );
