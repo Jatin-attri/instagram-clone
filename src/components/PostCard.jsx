@@ -1,27 +1,33 @@
-function PostCard() {
+import React, { useState } from 'react';
+
+const PostCard = ({ post }) => {
+  const [likes, setLikes] = useState(post.likes);
+  const [comment, setComment] = useState('');
+
+  const handleLike = () => {
+    fetch(`/api/posts/${post._id}/like`, { method: 'POST' })
+      .then(() => setLikes(prev => prev + 1));
+  };
+
+  const handleComment = e => {
+    e.preventDefault();
+    fetch(`/api/posts/${post._id}/comment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: comment })
+    }).then(() => setComment(''));
+  };
+
   return (
-    <div className="card border-0 mb-4">
-      <div className="card-header bg-white d-flex justify-content-between align-items-center">
-        <div className="d-flex align-items-center gap-2">
-          <img src="https://via.placeholder.com/40" className="rounded-circle" />
-          <div>
-            <strong>joshua_l</strong>
-            <div className="text-muted small">Tokyo, Japan</div>
-          </div>
-        </div>
-        <i className="bi bi-three-dots"></i>
-      </div>
-      <img src="https://via.placeholder.com/360x360" className="card-img-top" alt="Post" />
-      <div className="card-body">
-        <div className="d-flex gap-3 mb-2">
-          <i className="bi bi-heart-fill text-danger"></i>
-          <i className="bi bi-chat"></i>
-          <i className="bi bi-send"></i>
-        </div>
-        <p className="mb-1"><strong>Liked by craig_love and 44,686 others</strong></p>
-        <p><strong>joshua_l</strong> The game in Japan was amazing and I want to share some photos.</p>
-      </div>
+    <div className="post-card">
+      <img src={post.imageUrl} alt="Post" />
+      <p>{post.caption}</p>
+      <button onClick={handleLike}>❤️ {likes}</button>
+      <form onSubmit={handleComment}>
+        <input value={comment} onChange={e => setComment(e.target.value)} placeholder="Add a comment..." />
+      </form>
     </div>
   );
-}
+};
+
 export default PostCard;

@@ -51,6 +51,35 @@ const notifications = {
       type: "follow",
       showFollow: true,
     },
+    {
+      user: "craig_love",
+      action: "mentioned you in a comment: '@jacob.w exactly...'",
+      time: "2d",
+      avatar: "../src/assets/images/3.jpg",
+      type: "comment",
+    },
+    {
+      user: "martini_rond",
+      action: "started following you",
+      time: "3d",
+      avatar: "../src/assets/images/4.jpg",
+      type: "follow",
+    },
+    {
+      user: "maxjacobson",
+      action: "started following you",
+      time: "3d",
+      avatar: "../src/assets/images/5.jpg",
+      type: "follow",
+    },
+    {
+      user: "mis_peter",
+      action: "started following you",
+      time: "3d",
+      avatar: "../src/assets/images/6.jpg",
+      type: "follow",
+      showFollow: true,
+    },
   ],
 };
 

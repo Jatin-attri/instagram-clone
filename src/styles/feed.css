@@ -1,0 +1,27 @@
+.feed-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.post-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.post-details {
+  padding: 0.5rem 0;
+}
+
+.post-details p {
+  margin: 0.5rem 0;
+}

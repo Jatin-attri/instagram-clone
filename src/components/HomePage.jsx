@@ -1,15 +1,22 @@
 import "../styles/instagramHome.css";
-import Navbar from "./Navbar";
-import Stories from "./Stories";
-import PostCard from "./PostCard";
+import TopNavbar from "./TopNavbar";
+import StoriesScroller from "./StoriesScroller";
+import CreatePost from "./CreatePost";
+import HomeFeed from "./HomeFeed";
 import BottomNav from "./BottomNav";
+
+
 
 
 export default function HomePage() {
   return (
     <div className="homepage">
       
-      <Stories />
+      <StoriesScroller/>
+    
+      <HomeFeed/>
+      
+      
    
       
     </div>

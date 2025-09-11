@@ -9,20 +9,28 @@ import HighlightIcons from "./components/HighlightIcons";
 import ProfilePage from "./components/ProfilePage";
 import Register from "./components/Register";
 import Notifications from "./components/Notifications";
+import TopNavbar from "./components/TopNavbar";
+import BottomNav from "./components/BottomNav";
+import CreatePost from "./components/CreatePost";
+
 // import Profile from "./pages/Profile";
 // import Explore from "./pages/Explore";
 
 function App() {
   return (
     <BrowserRouter>
+    <TopNavbar/>
       <Routes>
         
         <Route path="/" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
        <Route path="/Notifications" element={<Notifications/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
+        <Route path="/home"  element={<HomePage/>}/>
+        <Route path="/createpost" element={<CreatePost/>}/>
         
       </Routes>
+      <BottomNav/>
     </BrowserRouter>
   );
 }
