@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import { useNavigate, Link } from "react-router-dom";
+import { GoogleLogin } from '@react-oauth/google';
+
+
+
+
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -81,6 +86,14 @@ export default function Register() {
           <button type="submit" className="btn btn-primary w-100 mb-3">
             Sign Up
           </button>
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
 
           <div className="text-center text-muted small">
             By signing up, you agree to our <a href="#">Terms</a>,{" "}

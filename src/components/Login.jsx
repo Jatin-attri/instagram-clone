@@ -1,6 +1,7 @@
 import { FaFacebookSquare } from "react-icons/fa";
 import "../styles/login.css";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from '@react-oauth/google';
 
 export default function Login() {
     return (
@@ -34,6 +35,14 @@ export default function Login() {
                     <button type="button" className="btn btn-outline-primary w-100 mb-2 d-flex justify-content-center align-items-center gap-2">
                         <FaFacebookSquare size={18} /> Log in with Facebook
                     </button>
+                    <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
                 </form>
 
                 {/* Footer */}

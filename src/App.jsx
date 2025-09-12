@@ -12,12 +12,18 @@ import Notifications from "./components/Notifications";
 import TopNavbar from "./components/TopNavbar";
 import BottomNav from "./components/BottomNav";
 import CreatePost from "./components/CreatePost";
+import CameraCapture from "./components/CameraCapture";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const clientId = "300382350887-o35r9nh92o7nfl4fsfcvnt0b4vd1oott.apps.googleusercontent.com";
 
 // import Profile from "./pages/Profile";
 // import Explore from "./pages/Explore";
 
 function App() {
   return (
+    <>
+     <GoogleOAuthProvider clientId={clientId}>
     <BrowserRouter>
     <TopNavbar/>
       <Routes>
@@ -28,10 +34,13 @@ function App() {
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/home"  element={<HomePage/>}/>
         <Route path="/createpost" element={<CreatePost/>}/>
+        <Route path="/CameraCapture" element={<CameraCapture/>}/>
         
       </Routes>
       <BottomNav/>
     </BrowserRouter>
+    </GoogleOAuthProvider>
+    </>
   );
 }
 

@@ -1,0 +1,47 @@
+/* CameraCapture.css */
+
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+}
+
+.webcam-feed {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
+}
+
+.capture-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #ff4c68;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.capture-button:hover {
+  background-color: #e0435d;
+}
+
+.captured-image {
+  margin-top: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #ccc;
+}

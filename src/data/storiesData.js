@@ -16,6 +16,11 @@ export const stories = [
     isLive: true,
   },
   {
+    username: "Sachin",
+    image: "../src/assets/images/2.jpg",
+    isLive: true,
+  },
+  {
     username: "karennne",
     image: "../src/assets/images/2.jpg",
     isLive: true,
