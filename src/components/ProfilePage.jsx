@@ -13,8 +13,8 @@ const ProfilePage = () => {
    <HighlightIcons/>
  
    <PostGrid/>
-   <hr />
-   <BottomNav/>
+   
+
    
     </div>
   );

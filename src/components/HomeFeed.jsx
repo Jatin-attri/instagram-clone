@@ -19,8 +19,17 @@ export default function HomeFeed() {
   }, []);
 
   const handleLike = async (postId) => {
+    Swal.fire({
+  position: "top-center",
+  icon: "success",
+  title: "Post Liked 👍",
+  showConfirmButton: false,
+  timer: 1500
+});
     await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
       method: "POST",
+      
+      
     });
     setPosts((prev) =>
       prev.map((p) =>
@@ -41,6 +50,13 @@ export default function HomeFeed() {
         body: JSON.stringify({ userId, text }),
       }
     );
+    Swal.fire({
+  position: "top-center",
+  icon: "success",
+  title: "Comment Posted 💖",
+  showConfirmButton: false,
+  timer: 1500
+});
 
     setComment((prev) => ({ ...prev, [postId]: "" }));
     fetchPosts();

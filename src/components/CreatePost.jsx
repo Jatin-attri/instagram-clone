@@ -41,10 +41,20 @@ export default function CreatePost() {
     });
 
     if (res.ok) {
-      alert("Post created!");
-      setCaption("");
+       setCaption("");
       setCharCount(0);
-      handleReset();
+      handleReset(); 
+      
+           Swal.fire({
+  title: "Post Created!",
+  icon: "success",
+  draggable: true
+});
+navigate("/home");
+
+     
+     
+ 
     } else {
       const data = await res.json();
       alert(data.error || "Failed to create post");

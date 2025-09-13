@@ -30,7 +30,12 @@ export default function Register() {
       if (res.ok) {
         const data = await res.json();
         localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/home");
+        Swal.fire({
+  title: "Registration Complete!",
+  icon: "success",
+  draggable: true
+});
+        navigate("/profile");
       } else {
         const data = await res.json();
         alert(data.error || "Registration failed. Try again.");
