@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import { useNavigate, Link } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
-
-
-
-
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -30,10 +27,10 @@ export default function Register() {
         body: JSON.stringify(formData),
       });
 
-     if (res.ok) {
-  const data = await res.json();
-  localStorage.setItem("user", JSON.stringify(data.user));
-  navigate("/home");
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/home");
       } else {
         const data = await res.json();
         alert(data.error || "Registration failed. Try again.");
@@ -41,6 +38,38 @@ export default function Register() {
     } catch (err) {
       console.error(err);
       alert("Server error.");
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      console.log("Decoded Google user:", decoded);
+
+      const googleUser = {
+        fullName: decoded.name,
+        email: decoded.email,
+        username: decoded.email.split("@")[0],
+        googleId: decoded.sub,
+      };
+
+      const res = await fetch("http://localhost:5000/api/google-auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(googleUser),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/home");
+      } else {
+        const data = await res.json();
+        alert(data.error || "Google authentication failed.");
+      }
+    } catch (err) {
+      console.error("Google login error:", err);
+      alert("Something went wrong with Google login.");
     }
   };
 
@@ -78,6 +107,7 @@ export default function Register() {
             name="password"
             type="password"
             placeholder="Password"
+            autoComplete="current-password"
             className="form-control mb-3"
             onChange={handleChange}
             required
@@ -86,20 +116,17 @@ export default function Register() {
           <button type="submit" className="btn btn-primary w-100 mb-3">
             Sign Up
           </button>
-          <GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-/>
-
-          <div className="text-center text-muted small">
-            By signing up, you agree to our <a href="#">Terms</a>,{" "}
-            <a href="#">Privacy Policy</a>, and <a href="#">Cookies Policy</a>.
-          </div>
         </form>
+
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={() => alert("Google login failed")}
+        />
+
+        <div className="text-center text-muted small mt-3">
+          By signing up, you agree to our <a href="#">Terms</a>,{" "}
+          <a href="#">Privacy Policy</a>, and <a href="#">Cookies Policy</a>.
+        </div>
 
         <div className="text-center mt-4">
           <small>
