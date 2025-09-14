@@ -2,10 +2,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+
 
 const prisma = new PrismaClient();
 const app = express();
@@ -14,6 +18,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// ✅ Initialize the client (NO `new` keyword!)
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// Use the updated model name that supports generateContent
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-05-20" });
 // ─── User Auth Routes ────────────────────────────────────────────────────────
 
 // Register
@@ -149,5 +157,23 @@ app.get('/api/posts', async (req, res) => {
   res.json(posts);
 });
 
+
+app.post('/api/chat', async (req, res) => {
+    try {
+        const { message, history } = req.body;
+        const chat = model.startChat({ history });
+
+        const result = await chat.sendMessage(message);
+        const responseText = result.response.text();
+
+        res.json({ reply: responseText });
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({ error: 'Failed to get a response from the bot.' });
+    }
+});
 // Start server
-app.listen(5000, () => console.log('Server on http://localhost:5000'));
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`Server on http://localhost:${port}`);
+});

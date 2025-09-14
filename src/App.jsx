@@ -14,6 +14,9 @@ import BottomNav from "./components/BottomNav";
 import CreatePost from "./components/CreatePost";
 import CameraCapture from "./components/CameraCapture";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import ChatBot from "./components/ChatBot";
+import Search from "./components/Search";
+
 
 const clientId = "300382350887-o35r9nh92o7nfl4fsfcvnt0b4vd1oott.apps.googleusercontent.com";
 
@@ -35,6 +38,8 @@ function App() {
         <Route path="/home"  element={<HomePage/>}/>
         <Route path="/createpost" element={<CreatePost/>}/>
         <Route path="/CameraCapture" element={<CameraCapture/>}/>
+        <Route path="/chat" element={<ChatBot />} />
+        <Route path="/search" element={<Search/>}/>
         
       </Routes>
       <BottomNav/>

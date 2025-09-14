@@ -19,7 +19,7 @@ export default function BottomNav() {
           
         </NavLink>
         <NavLink to="/search" className="nav-btn">
-          <FaSearch />
+          <Link to="/search"><FaSearch /></Link>
         </NavLink>
         <NavLink to="/createpost" className="nav-btn">
           <Link to="/createpost"><FaPlusSquare /></Link>

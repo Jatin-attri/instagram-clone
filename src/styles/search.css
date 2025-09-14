@@ -1,0 +1,130 @@
+.search-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  color: #1a202c;
+  background-color: #f0f2f5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.search-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin: 20px;
+}
+
+.search-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.search-input-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-input-area:focus-within {
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.search-input-area input {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent;
+  padding: 10px 0;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+}
+
+.search-input-area input::placeholder {
+  color: #999;
+}
+
+.search-input-area button {
+  background: linear-gradient(to right, #4a90e2, #357ae8);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.search-input-area button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(59, 122, 209, 0.4);
+}
+
+.search-input-area button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 2rem 0;
+  font-style: italic;
+  color: #888;
+}
+
+.search-result-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f0f4f7;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-in-out;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.result-title {
+  margin-top: 0;
+  color: #4a90e2;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .search-page-wrapper {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

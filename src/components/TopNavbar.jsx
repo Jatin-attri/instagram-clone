@@ -19,7 +19,7 @@ const TopNavbar = () => {
             <span className="red-dot"></span>
           </div>
           <div className="nav-icon">
-            <FiSend size={24} />
+            <Link to='/chat'><FiSend size={24} /></Link>
           </div>
         </div>
       </div>
