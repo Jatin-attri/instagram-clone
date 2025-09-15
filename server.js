@@ -25,16 +25,41 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-05-20"
 // ─── User Auth Routes ────────────────────────────────────────────────────────
 
 // Register
+// app.post('/api/register', async (req, res) => {
+//   const { fullName, username, email, password } = req.body;
+//   if (!fullName || !username || !email || !password) {
+//     return res.status(400).json({ error: 'Missing required fields' });
+//   }
+
+//   const hash = await bcrypt.hash(password, 10);
+//   try {
+//     const user = await prisma.user.create({
+//       data: { fullName, username, email, password: hash }
+//     });
+//     res.status(201).json({ user });
+//   } catch (err) {
+//     console.error('Registration error:', err);
+//     res.status(400).json({ error: 'Registration failed' });
+//   }
+// });
 app.post('/api/register', async (req, res) => {
-  const { fullName, username, email, password } = req.body;
-  if (!fullName || !username || !email || !password) {
+  const { fullName, username, email, password, gender, avatar, bio } = req.body;
+  if (!fullName || !username || !email || !password || !gender || !avatar) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
   const hash = await bcrypt.hash(password, 10);
   try {
     const user = await prisma.user.create({
-      data: { fullName, username, email, password: hash }
+      data: {
+        fullName,
+        username,
+        email,
+        password: hash,
+        gender,
+        avatar,
+        bio
+      }
     });
     res.status(201).json({ user });
   } catch (err) {
@@ -45,19 +70,24 @@ app.post('/api/register', async (req, res) => {
 
 // Login
 app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { username, password } = req.body;
+  if (!username || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) return res.status(404).json({ error: 'User not found' });
+  try {
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (!user) return res.status(404).json({ error: 'User not found' });
 
-  const valid = await bcrypt.compare(password, user.password || '');
-  if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
+    const valid = await bcrypt.compare(password, user.password || '');
+    if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-  res.json({ token, user });
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    res.json({ token, user });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).json({ error: 'Login failed' });
+  }
 });
 
 // Google OAuth
@@ -159,18 +189,53 @@ app.get('/api/posts', async (req, res) => {
 
 
 app.post('/api/chat', async (req, res) => {
-    try {
-        const { message, history } = req.body;
-        const chat = model.startChat({ history });
+  try {
+    const { message } = req.body;
 
-        const result = await chat.sendMessage(message);
-        const responseText = result.response.text();
+    const result = await model.generateContent(message);
+    const responseText = result.response.text();
 
-        res.json({ reply: responseText });
-    } catch (error) {
-        console.error('API Error:', error);
-        res.status(500).json({ error: 'Failed to get a response from the bot.' });
-    }
+    res.json({ reply: responseText });
+  } catch (error) {
+    console.error('API Error:', error);
+    res.status(500).json({ error: 'Failed to get a response from the bot.' });
+  }
+});
+
+// Update bio
+app.put('/api/user/:id/bio', async (req, res) => {
+  const { id } = req.params;
+  const { bio } = req.body;
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: { bio },
+    });
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update bio' });
+  }
+});
+
+// Get user profile
+app.get('/api/user/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      include: {
+        posts: true,
+        comments: true,
+      },
+    });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch user profile' });
+  }
 });
 // Start server
 const port = process.env.PORT || 5000;

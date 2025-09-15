@@ -1,54 +1,94 @@
-.instagram-login {
-  background-color: #fafafa;
-  padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid #dbdbdb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  max-width: 360px;
-  width: 100%;
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
 }
 
-.instagram-login .instagram-logo {
+.login-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-logo {
   font-family: 'Grand Hotel', cursive;
   font-size: 2.5rem;
   color: #262626;
-  text-align: center;
   margin-bottom: 1.5rem;
 }
 
-.instagram-login .form-control {
-  font-size: 0.95rem;
+.login-input {
+  width: 100%;
   padding: 10px 12px;
-  border-radius: 6px;
+  margin-bottom: 12px;
+  border-radius: 8px;
   border: 1px solid #dbdbdb;
   background-color: #fafafa;
+  font-size: 0.95rem;
 }
 
-.instagram-login .btn-primary {
+.login-btn-primary {
+  width: 100%;
+  padding: 10px;
   background-color: #0095f6;
+  color: white;
   border: none;
+  border-radius: 8px;
   font-weight: 600;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.instagram-login .btn-primary:hover {
+.login-btn-primary:hover {
   background-color: #007acc;
 }
 
-.instagram-login .btn-outline-primary {
-  border-color: #385185;
-  color: #385185;
-  font-weight: 500;
+.login-divider {
+  margin: 12px 0;
+  font-size: 0.85rem;
+  color: #999;
 }
 
-.instagram-login .btn-outline-primary:hover {
+.login-btn-facebook {
+  width: 100%;
+  padding: 10px;
   background-color: #385185;
-  color: #fff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
 }
 
-.instagram-login .text-muted {
+.login-forgot {
+  text-align: right;
+  margin-bottom: 8px;
   font-size: 0.85rem;
 }
 
-.instagram-login a.text-primary:hover {
+.login-forgot a {
+  color: #0095f6;
+  text-decoration: none;
+}
+
+.login-forgot a:hover {
   text-decoration: underline;
+}
+
+.login-footer {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #555;
 }

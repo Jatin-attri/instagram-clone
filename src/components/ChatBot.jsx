@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/chatbot.css';
 import botAvatar from '../assets/images/bot.png';
+import ReactMarkdown from 'react-markdown';
  // Make sure you have a bot.png in your assets
 
  import { Link } from 'react-router-dom';
@@ -32,11 +33,12 @@ export default function ChatBot() {
     try {
       // Filter out the initial bot message from the history sent to the API
       const conversationHistory = messages
-        .filter(msg => msg.sender !== 'bot')
-        .map(msg => ({
-          role: msg.sender === 'user' ? 'user' : 'model',
-          parts: [{ text: msg.text }],
-        }));
+  .filter((msg, i) => !(msg.sender === 'bot' && i === 0)) // exclude only the first bot message
+  .map(msg => ({
+    role: msg.sender === 'user' ? 'user' : 'model',
+    parts: [{ text: msg.text }],
+  }));
+
 
       const res = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
@@ -95,9 +97,9 @@ export default function ChatBot() {
       <div className="chat-box" ref={chatBoxRef}>
         {messages.map((msg, i) => (
           <div key={i} className={`chat-message ${msg.sender}`}>
-            <div className="message-content">
-              {msg.text}
-            </div>
+           <div className="message-content">
+  <ReactMarkdown>{msg.text}</ReactMarkdown>
+</div>
           </div>
         ))}
         {loading && (

@@ -6,6 +6,7 @@ import BottomNav from './BottomNav';
 import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
+  
   return (
     <div className="container mt-4">
       <ProfileHeader/>

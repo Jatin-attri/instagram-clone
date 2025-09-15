@@ -1,0 +1,28 @@
+.bio-editor {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bio-editor textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.bio-editor button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: green;
+}

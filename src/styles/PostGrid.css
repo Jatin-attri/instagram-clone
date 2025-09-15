@@ -37,6 +37,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
+  margin-bottom: 100px;
 }
 
 .post-item img {

@@ -1,61 +1,89 @@
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { FaFacebookSquare } from "react-icons/fa";
-import "../styles/login.css";
-import { Link } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from "@react-oauth/google";
+import "../styles/Login.css";
 
 export default function Login() {
-    return (
-        <div className="container d-flex justify-content-center align-items-center min-vh-100">
-            <div className="card p-4 shadow-sm" style={{ maxWidth: "360px", width: "100%" }}>
-                {/* Instagram Logo */}
-                <h1 className="text-center mb-4 instagram-logo">Instagram</h1>
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
 
-                {/* Input Fields */}
-                <form>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        className="form-control mb-2"
-                        
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="form-control mb-2"
-                    />
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-                    <div className="text-end mb-2">
-                        <a href="#" className="small text-primary">Forgot password?</a>
-                    </div>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                    <button className="btn btn-primary w-100 mb-3">Log in</button>
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-                    <div className="text-center text-muted mb-3">OR</div>
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        Swal.fire({ title: "Login Successful!", icon: "success" });
+        navigate("/profile");
+      } else {
+        Swal.fire({ title: "Login Failed", text: data.error, icon: "error" });
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      Swal.fire({ title: "Server Error", icon: "error" });
+    }
+  };
 
-                    <button type="button" className="btn btn-outline-primary w-100 mb-2 d-flex justify-content-center align-items-center gap-2">
-                        <FaFacebookSquare size={18} /> Log in with Facebook
-                    </button>
-                    <GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-/>
-                </form>
+  return (
+    <div className="login-wrapper">
+      <div className="login-card">
+        <h1 className="login-logo">Instagram</h1>
 
-                {/* Footer */}
-                <div className="text-center mt-3">
-                    <small>
-                        Don’t have an account? <Link to="/">Sign Up</Link> 
-                    </small>
-                </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            name="username"
+            type="text"
+            placeholder="Username"
+            className="login-input"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="login-input"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-                <div className="text-center mt-2 text-muted" style={{ fontSize: "0.75rem" }}>
-                    Instagram or Facebook
-                </div>
-            </div>
+          <div className="login-forgot">
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" className="login-btn-primary">Log In</button>
+
+          <div className="login-divider">OR</div>
+
+          <button type="button" className="login-btn-facebook">
+            <FaFacebookSquare size={18} /> Log in with Facebook
+          </button>
+
+          <GoogleLogin
+            onSuccess={(res) => console.log("Google login:", res)}
+            onError={() => console.log("Google login failed")}
+          />
+        </form>
+
+        <div className="login-footer">
+          <small>
+            Don’t have an account? <Link to="/">Sign Up</Link>
+          </small>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

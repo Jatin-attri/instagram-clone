@@ -9,6 +9,7 @@
   border: 1px solid #dbdbdb;
   max-width: 400px;
   width: 100%;
+  margin: 0px 0px 50px 0px;
 }
 
 .register-logo {
@@ -53,3 +54,21 @@ a.text-primary:hover {
   text-decoration: underline;
 }
 
+.avatar-selection {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.avatar-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s ease;
+}
+
+.avatar-option.selected {
+  border-color: #4a90e2;
+}
