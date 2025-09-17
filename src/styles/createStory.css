@@ -1,0 +1,20 @@
+.create-story-container {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.create-story-container input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.story-preview img,
+.story-preview video {
+    max-width: 100%;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}

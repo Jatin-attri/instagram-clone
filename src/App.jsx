@@ -16,6 +16,7 @@ import CameraCapture from "./components/CameraCapture";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ChatBot from "./components/ChatBot";
 import Search from "./components/Search";
+import CreateStory from "./components/CreateStory";
 
 
 const clientId = "300382350887-o35r9nh92o7nfl4fsfcvnt0b4vd1oott.apps.googleusercontent.com";
@@ -26,25 +27,26 @@ const clientId = "300382350887-o35r9nh92o7nfl4fsfcvnt0b4vd1oott.apps.googleuserc
 function App() {
   return (
     <>
-     <GoogleOAuthProvider clientId={clientId}>
-    <BrowserRouter>
-    <TopNavbar/>
-      <Routes>
-        
-        <Route path="/" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
-       <Route path="/Notifications" element={<Notifications/>}/>
-        <Route path="/profile" element={<ProfilePage/>}/>
-        <Route path="/home"  element={<HomePage/>}/>
-        <Route path="/createpost" element={<CreatePost/>}/>
-        <Route path="/CameraCapture" element={<CameraCapture/>}/>
-        <Route path="/chat" element={<ChatBot />} />
-        <Route path="/search" element={<Search/>}/>
-        
-      </Routes>
-      <BottomNav/>
-    </BrowserRouter>
-    </GoogleOAuthProvider>
+      <GoogleOAuthProvider clientId={clientId}>
+        <BrowserRouter>
+          <TopNavbar />
+          <Routes>
+
+            <Route path="/" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Notifications" element={<Notifications />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/createpost" element={<CreatePost />} />
+            <Route path="/CameraCapture" element={<CameraCapture />} />
+            <Route path="/chat" element={<ChatBot />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/createstory" element={<CreateStory />} />
+
+          </Routes>
+          <BottomNav />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     </>
   );
 }

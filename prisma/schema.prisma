@@ -8,19 +8,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Story {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  mediaUrl  String
+  mediaType String // 'image', 'video', 'gif'
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+}
+
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   fullName String
-  username String    @unique
-  email    String    @unique
-  password String?   // optional for Google users
-  googleId String?   // optional for Google users
-  bio      String?   // optional user bio
-  gender   String?   // 'male' or 'female'
-  avatar   String?   // image URL
+  username String  @unique
+  email    String  @unique
+  password String?
+  googleId String?
+  bio      String?
+  gender   String?
+  avatar   String?
 
   posts    Post[]    @relation("UserPosts")
   comments Comment[]
+  stories  Story[] // 👈 Add this line
 }
 
 model Post {
@@ -31,18 +42,18 @@ model Post {
   comments  Comment[] @relation("PostComments")
   createdAt DateTime  @default(now())
 
-  user      User      @relation("UserPosts", fields: [userId], references: [id])
-  userId    String    @db.ObjectId
+  user   User   @relation("UserPosts", fields: [userId], references: [id])
+  userId String @db.ObjectId
 }
 
 model Comment {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   text      String
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 
-  user      User      @relation(fields: [userId], references: [id])
-  userId    String    @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
 
-  post      Post      @relation("PostComments", fields: [postId], references: [id])
-  postId    String    @db.ObjectId
+  post   Post   @relation("PostComments", fields: [postId], references: [id])
+  postId String @db.ObjectId
 }

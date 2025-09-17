@@ -15,11 +15,11 @@ export default function BottomNav() {
     <div className="bottom-nav-wrapper">
       <div className="bottom-nav-inner">
         <NavLink to="/" className="nav-btn">
-        <Link to='/home' ><FaHome /></Link>
-          
+          <Link to='/home' ><FaHome /></Link>
+
         </NavLink>
-        <NavLink to="/search" className="nav-btn">
-          <Link to="/search"><FaSearch /></Link>
+        <NavLink to="/createstory" className="nav-btn">
+          <Link to="/createstory"><FaSearch /></Link>
         </NavLink>
         <NavLink to="/createpost" className="nav-btn">
           <Link to="/createpost"><FaPlusSquare /></Link>

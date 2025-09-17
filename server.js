@@ -237,8 +237,43 @@ app.get('/api/user/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch user profile' });
   }
 });
+
+app.post("/api/stories", async (req, res) => {
+  const { userId, mediaUrl } = req.body;
+  if (!userId || !mediaUrl) return res.status(400).json({ error: "Missing fields" });
+
+  const mediaType = /\.(mp4|webm|ogg)$/i.test(mediaUrl)
+    ? "video"
+    : /\.(gif)$/i.test(mediaUrl)
+      ? "gif"
+      : "image";
+
+  try {
+    const story = await prisma.story.create({
+      data: { userId, mediaUrl, mediaType },
+    });
+    res.json(story);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create story" });
+  }
+});
+
+app.get("/api/stories", async (req, res) => {
+  try {
+    const stories = await prisma.story.findMany({
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+    });
+    res.json(stories);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch stories" });
+  }
+});
+
+
+
 // Start server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-    console.log(`Server on http://localhost:${port}`);
+  console.log(`Server on http://localhost:${port}`);
 });
